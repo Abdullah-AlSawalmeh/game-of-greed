@@ -11,7 +11,7 @@ The point of this game is to gain as many points as possible. Points are earned 
 
 ## Problem Domain
   tackling the highest risk and/or highest priority features - scoring, dice rolling and banking of points.
-  
+
 ## Change Log
 
 - Lab 06  13/6/2021
@@ -25,4 +25,4 @@ _____________________________
 
 ## Links
 
-PR 1 Lab 06: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/1)3
+PR 1 Lab 06: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/1)
