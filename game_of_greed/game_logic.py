@@ -1,12 +1,7 @@
-from mmap import ACCESS_READ
 import random
 from collections import Counter
 
 
-# print(ctr)
-# print(ctr.items())
-# print(ctr2.most_common(1)[0][1])
-# print(ctr.most_common())
 
 all_rules = {
     '(1, 1)': 100,
@@ -85,7 +80,22 @@ class GameLogic:
 
 
 class Banker:
-    pass
+
+    def __init__(self):
+        self.shelved = 0
+        self.balance= 0
+ 
+    def shelf(self,num):
+        self.shelved += num
+   
+    def bank(self):
+        # self.balance = 0
+        self.balance += self.shelved
+        self.shelved = 0
+        return self.balance
+
+    def clear_shelf(self):
+        self.shelved = 0
 
 
 
