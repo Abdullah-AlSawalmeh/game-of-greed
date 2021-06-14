@@ -31,5 +31,6 @@ _____________________________
 
 ## Links
 
-PR 1 Lab 06: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/1)
-PR 2 Lab 07: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/3)
+- PR 1 Lab 06: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/1)
+
+- PR 2 Lab 07: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/3)
