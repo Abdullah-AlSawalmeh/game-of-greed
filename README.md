@@ -22,7 +22,14 @@ The point of this game is to gain as many points as possible. Points are earned 
 
 _____________________________
 
+- Lab 07  14/6/2021
+
+1)starting time: 1:30 pm
+
+2)Finish time:5:00pm 
+
 
 ## Links
 
 PR 1 Lab 06: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/1)
+PR 2 Lab 07: [Pull Request Link](https://github.com/Abdullah-AlSawalmeh/game-of-greed/pull/3)
