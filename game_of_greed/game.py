@@ -7,10 +7,19 @@ class Game:
         self.round =1
 
     def roll_dice_play(self):
+        sum = 0
         print('Rolling 6 dice...')
         dice = self.roller(6)
+        for x in range(len(dice)):
+            for y in range(len(dice)-1):
+                new_arr = [dice[x],dice[y]]
+                sum += GameLogic.calculate_score(new_arr)
         printable_dice = ','.join([str(d) for d in dice])
         print(printable_dice)
+        if sum == 0:
+            print('Zilch!!! Round over')
+            return self.rolling()
+            
         do_quit_keep = input("Enter dice to keep (no spaces), or (q)uit: ")
         if do_quit_keep == 'q':
             self.user_quit()
@@ -39,6 +48,7 @@ class Game:
             print(f'You banked {self.game_bank.shelved} points in round {self.round}')
             self.game_bank.bank()
             print(f'Total score is {self.game_bank.balance} points')
+            print('Zilch!!! Round over')
             self.round+=1
             self.rolling()
         elif user_choice == 'q':
@@ -56,6 +66,10 @@ class Game:
             print("OK. Maybe another time")
         else:
             self.rolling()
+
+
+
+
             
   
                     

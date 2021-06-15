@@ -104,7 +104,7 @@ if __name__ == "__main__":
     # print(dice.calculate_score((1, 1, 1, 2, 3, 4)))
     # print(dice.calculate_score((1,1,2,2,4,4)))
     # print(dice.calculate_score((5,)))
-    # print(dice.calculate_score((1,2,3,4,5,6)))
+    # print(dice.calculate_score((2,2,3,4,6,6)))
     y="5".split(',')
     print(y)
    
