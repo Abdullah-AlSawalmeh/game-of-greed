@@ -54,7 +54,6 @@ class Game:
             print(f'You banked {self.game_bank.shelved} points in round {self.round}')
             self.game_bank.bank()
             print(f'Total score is {self.game_bank.balance} points')
-            print('Zilch!!! Round over')
             self.round+=1
             self.rolling()
         elif user_choice == 'q':
