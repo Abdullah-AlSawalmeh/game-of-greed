@@ -74,6 +74,10 @@ class GameLogic:
             sum = sum + all_rules_counter[f'{i}']
         return sum
 
+    @staticmethod
+    def validation (roll_value,keeped_value ):
+        return not Counter(keeped_value) - Counter(roll_value)    
+
 
    
 
