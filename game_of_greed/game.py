@@ -3,7 +3,7 @@ from game_of_greed.game_logic import GameLogic , Banker
 class Game:
     game_bank= Banker()
     def __init__(self, roller=None):
-        self.roller = roller
+        self.roller = roller or GameLogic.roll_dice
         self.round = 1
         self.number_of_dice = 6
         self.Zilch = False
@@ -15,6 +15,7 @@ class Game:
         
         print(f'Rolling {self.number_of_dice} dice...')
         dice = self.roller(self.number_of_dice)
+        # dice = GameLogic.roll_dice()
         rolling_dice_score,rolled_dice= self.user_choice_to_tuple_and_socre(dice)
         if rolling_dice_score == 0:
             
@@ -65,15 +66,6 @@ class Game:
                     user_input22 = input('(r)oll again, (b)ank your points or (q)uit ')
                     self.user_choices_2(user_input22)
 
-
-
-
-               
-
-                    
-
-
-
     def user_choice_to_tuple_and_socre(self,user_input):
             List = list(user_input)
             int_value = [int(x) for x in List ]
@@ -102,6 +94,8 @@ class Game:
             self.user_quit()
 
     def rolling(self):
+        if self.round == self.max_number_of_rounds:
+            exit()
         
         # self.handle_zilch()
                 
@@ -110,14 +104,6 @@ class Game:
         
         self.roll_dice_play()
   
-                
-    def play(self):
-        print("Welcome to Game of Greed")
-        user_input = input("Wanna play? ")
-        if user_input == 'n':
-            print("OK. Maybe another time")
-        else:
-            self.rolling()
 
     
     def cheat_and_fix (self,roll_value,do_quit_keep):
@@ -138,6 +124,15 @@ class Game:
 
         return do_quit_keep
 
+    def play(self,max_number_of_rounds):
+        self.max_number_of_rounds = max_number_of_rounds
+        print("Welcome to Game of Greed")
+        user_input = input("Wanna play? ")
+        if user_input == 'n':
+            print("OK. Maybe another time")
+        else:
+            self.rolling()
+
 
 
     
@@ -155,7 +150,7 @@ class Game:
              
 
 if __name__ == "__main__":
-    roller = GameLogic.roll_dice
+    # roller = GameLogic.roll_dice
     
-    game = Game(roller)
+    game = Game()
     game.play()

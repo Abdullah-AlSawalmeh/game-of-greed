@@ -62,7 +62,7 @@ class GameLogic:
             return 0
 
         if ctr.most_common(1)[0][1] == 1 and len(ctr.most_common()) == 6:
-            print(len(ctr.most_common()))
+            # print(len(ctr.most_common()))
             return 1500
         
         
@@ -80,6 +80,26 @@ class GameLogic:
         # print(Counter(roll_value))
         # print(Counter(keeped_value) - Counter(roll_value))
         return bool(Counter(keeped_value) - Counter(roll_value))  
+
+    @staticmethod
+    def get_scorers(dice):
+        # version_3
+
+        all_dice_score = GameLogic.calculate_score(dice)
+
+        if all_dice_score == 0:
+            return tuple()
+
+        scorers = []
+
+        for i in range(len(dice)):
+            sub_roll = dice[:i] + dice[i + 1 :]
+            sub_score = GameLogic.calculate_score(sub_roll)
+
+            if sub_score != all_dice_score:
+                scorers.append(dice[i])
+
+        return tuple(scorers)
 
 
    
