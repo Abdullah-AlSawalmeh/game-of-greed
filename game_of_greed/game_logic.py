@@ -67,7 +67,7 @@ class GameLogic:
         
         
         if ctr.most_common(1)[0][1] == 2 and ctr.most_common(2)[0][1] == 2 and ctr.most_common(3)[0][1] == 2 and len(ctr.most_common()) == 3:
-            return 750
+            return 1500
         
         for i in ctr.most_common():
 
@@ -75,8 +75,11 @@ class GameLogic:
         return sum
 
     @staticmethod
-    def validation (roll_value,keeped_value ):
-        return not Counter(keeped_value) - Counter(roll_value)    
+    def cheater (roll_value,keeped_value ):
+        # print(Counter(keeped_value))
+        # print(Counter(roll_value))
+        # print(Counter(keeped_value) - Counter(roll_value))
+        return bool(Counter(keeped_value) - Counter(roll_value))  
 
 
    
@@ -108,9 +111,9 @@ if __name__ == "__main__":
     # print(dice.calculate_score((1, 1, 1, 2, 3, 4)))
     # print(dice.calculate_score((1,1,2,2,4,4)))
     # print(dice.calculate_score((5,)))
-    # print(dice.calculate_score((2,2,3,4,6,6)))
-    y="5".split(',')
-    print(y)
+    print(dice.validation((2,2,3,4,6,6),(2,2,3)))
+    # y="5".split(',')
+    # print(y)
    
     # print(dice.calculate_score(tuple(x)))
     
