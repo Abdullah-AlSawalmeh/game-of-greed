@@ -4,4 +4,5 @@ Starting round 1
 Rolling 6 dice...
 4,4,5,2,3,1
 Enter dice to keep (no spaces), or (q)uit: q
+Total score is 0 points
 Thanks for playing. You earned 0 points
