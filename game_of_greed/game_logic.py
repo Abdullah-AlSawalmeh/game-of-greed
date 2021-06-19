@@ -62,11 +62,16 @@ class GameLogic:
             return 0
 
         if ctr.most_common(1)[0][1] == 1 and len(ctr.most_common()) == 6:
-            # print(len(ctr.most_common()))
+            
             return 1500
         
         
-        if ctr.most_common(1)[0][1] == 2 and ctr.most_common(2)[0][1] == 2 and ctr.most_common(3)[0][1] == 2 and len(ctr.most_common()) == 3:
+        if len(ctr.most_common()) == 3 and ctr.most_common(1)[0][1] == 2 and ctr.most_common(2)[1][1] == 2 and ctr.most_common(3)[2][1] == 2 :
+            # print(ctr.most_common(1)[0][1])
+            # print(ctr.most_common(2)[1][1])
+            # print(ctr.most_common(3)[2][1])
+            # print(ctr.most_common())
+            # print("sdf")
             return 1500
         
         for i in ctr.most_common():
@@ -86,6 +91,7 @@ class GameLogic:
         # version_3
 
         all_dice_score = GameLogic.calculate_score(dice)
+        # print(all_dice_score)
 
         if all_dice_score == 0:
             return tuple()
@@ -95,6 +101,8 @@ class GameLogic:
         for i in range(len(dice)):
             sub_roll = dice[:i] + dice[i + 1 :]
             sub_score = GameLogic.calculate_score(sub_roll)
+            # print(sub_roll)
+            # print(sub_score)
 
             if sub_score != all_dice_score:
                 scorers.append(dice[i])
@@ -129,9 +137,13 @@ class Banker:
 if __name__ == "__main__":
     dice= GameLogic()
     # print(dice.calculate_score((1, 1, 1, 2, 3, 4)))
+    # print(dice.calculate_score((1, 5, 5, 1, 6,4)))
+    # print(dice.calculate_score((3,5,6,2,5)))
     # print(dice.calculate_score((1,1,2,2,4,4)))
     # print(dice.calculate_score((5,)))
-    print(dice.validation((2,2,3,4,6,6),(2,2,3)))
+    # print(dice.validation((2,2,3,4,6,6),(2,2,3)))
+    # print(GameLogic.get_scorers((1,5,5,6,1,6)))
+    print(GameLogic.get_scorers((1,2,3,4,5,6)))
     # y="5".split(',')
     # print(y)
    
