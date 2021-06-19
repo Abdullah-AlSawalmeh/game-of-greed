@@ -28,7 +28,6 @@ class BasePlayer:
             player = cls()
             game = Game() # doesn't pass a mock roller
             try:
-                print("#######################################################################################################################################")
                 game.play(num_rounds)
             except SystemExit:
                 # in game system exit is fine
@@ -56,7 +55,7 @@ class NervousNellie(BasePlayer):
             self.roll = tuple(int(char) for char in first_arg.split(","))
         elif first_arg.startswith("Thanks for playing."):
             self.total_score = int(re.findall(r"\d+", first_arg)[0])
-        self.old_print(first_arg)
+        # self.old_print(first_arg)
     def _mock_input(self, *args):
         prompt = args[0]
         if prompt.startswith("Wanna play?"):
@@ -69,46 +68,80 @@ class NervousNellie(BasePlayer):
             return "b"
         else:
             raise ValueError(f"Unrecognized prompt {prompt}")
-
-class BasicBot(BasePlayer):
+class AbdullahsBot(BasePlayer):
     def __init__(self):
         super().__init__()
         self.roll = None
         self.choice = "r"
+        self.temp_roll = None
+
+    def counter_of_5s(self,roll):
+        if 5 in roll:
+            
+            counter = 0
+            for i in roll:
+                if i == 5:
+                    counter = counter + 1
+            # self.old_print(counter)
+            return counter
+        else:
+            return 9999
     def _mock_print(self, *args):
         
         first_arg = args[0]
-        # self.old_print(first_arg)
         first_char = first_arg[0]
-        # self.old_print(first_char)
         if first_char.isdigit():
             self.roll = tuple(int(char) for char in first_arg.split(","))
         elif first_arg.startswith("Thanks for playing."):
             self.total_score = int(re.findall(r"\d+", first_arg)[0])
-        self.old_print(first_arg)
+        # self.old_print(first_arg)
+
     def _mock_input(self, *args):
         prompt = args[0]
+        ctr = Counter(self.roll)
         if prompt.startswith("Wanna play?"):
             return "y"
         elif prompt.startswith("Enter dice to keep (no spaces), or (q)uit:"):
-            scorers = GameLogic.get_scorers(self.roll)
-            keepers = "".join([str(ch) for ch in scorers])
-            return keepers
+            if ctr.most_common(1)[0][1] == 1 and len(ctr.most_common()) == 6:
+                scorers = GameLogic.get_scorers(self.roll)
+                self.temp_roll = scorers
+                keepers = "".join([str(ch) for ch in scorers])
+                return keepers
+
+            if len(ctr.most_common()) == 3 and ctr.most_common(1)[0][1] == 2 and ctr.most_common(2)[1][1] == 2 and ctr.most_common(3)[2][1] == 2 :
+                scorers = GameLogic.get_scorers(self.roll)
+                self.temp_roll = scorers
+                keepers = "".join([str(ch) for ch in scorers])
+                return keepers
+
+            if self.counter_of_5s(self.roll) <= 2 :
+                scorers = GameLogic.get_scorers(self.roll)
+                self.temp_roll = scorers
+                no5s = "".join([str(ch) for ch in scorers if ch != 5])
+                return no5s
+            else:
+                scorers = GameLogic.get_scorers(self.roll)
+                keepers = "".join([str(ch) for ch in scorers if ch])
+                return keepers
+
+    
         elif prompt.startswith("(r)oll again, (b)ank your points or (q)uit "):
-            print(self.choice)
-            if self.choice == "r":
-                self.choice = "b"
-                return "r"
-            elif self.choice == "b" :
-                self.choice = "r"
+            if len(self.roll) <= 3:
+                print("b")
                 return "b"
+            elif(GameLogic.calculate_score(self.roll) <= 2000) and GameLogic.calculate_score(self.roll) >= 300 :
+                print("b")
+                return "b"
+            else:
+                print("r")
+                return "r"
         else:
             raise ValueError(f"Unrecognized prompt {prompt}")
 
-
-
-
 if __name__ == "__main__":
-    BasicBot.play(20,1000)
     print("#" * 200)
-    # NervousNellie.play(20,1000)
+    print('Abdullah`s bot')
+    AbdullahsBot.play(20,1000)
+    print("#" * 200)
+    print('Ahmad`s bot')
+    NervousNellie.play(20,1000)
